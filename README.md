@@ -1,4 +1,4 @@
-# OpenShift Container Platform for self-training
+# The self-training resources for OpenShift Container Platform
 
 ![openshift_trainings background](https://github.com/bysnupy/openshift_trainings/blob/master/.images/cloud_background.jpg)
 
