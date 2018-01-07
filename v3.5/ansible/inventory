@@ -1,0 +1,11 @@
+[nodes]
+master1.host.local
+node1.host.local
+node2.host.local
+
+[master]
+master1.host.local
+
+[node]
+node1.host.local
+node2.host.local

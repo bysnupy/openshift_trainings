@@ -1,0 +1,58 @@
+---
+- name: OpenShift Pre-Installation tasks
+  hosts: nodes
+  vars:
+    rh_user: "{{ RHUSER }}"
+    rh_pass: "{{ RHPASS }}"
+    pool_id: "{{ POOLID }}"
+    disable_repos:
+      "rhel-7-server-htb-rpms,rhel-7-server-rt-beta-rpms"
+    required_repos:
+      - rhel-7-server-rpms
+      - rhel-7-server-extras-rpms
+
+  tasks:
+  - name: Register subscription and pool-ID
+    redhat_subscription:
+      state: present
+      username: "{{ rh_user }}"
+      password: "{{ rh_pass }}"
+      pool_ids:
+        - "{{ pool_id }}"
+    
+  - name: Install the yum-utils for setting up specific yum repositories
+    yum:
+      name: yum-utils
+      state: installed
+      disablerepo: "{{ disable_repos }}"
+
+  - name: Listing the enabled repositories at this time
+    shell: subscription-manager repos --list-enabled | awk '/Repo ID/{print $3}'
+    register: repos_output
+
+  - name: Disable all repositories for adding required ones
+    command: yum-config-manager --disable "{{ item }}"
+    with_items: "{{ repos_output.stdout_lines }}"
+
+  - name: Adds required repositories for OpenShit installation
+    command: yum-config-manager --enable "{{ item }}"
+    with_items: "{{ required_repos }}"
+
+  - name: Install required packages
+    yum:
+      name: "{{ item }}"
+      state: installed
+    with_items:
+      - docker
+
+  - name: Disable the firewalld service
+    systemd:
+      name: firewalld
+      state: stopped
+      enabled: true
+
+  - name: Enable the NetworkManager service
+    systemd:
+      name: NetworkManager
+      state: started
+      enabled: true
