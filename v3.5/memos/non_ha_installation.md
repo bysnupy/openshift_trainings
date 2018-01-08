@@ -346,6 +346,48 @@ Play 15/28 (Gather and set facts for master hosts)
 ........................
 Play 16/28 (Determine if session secrets must be generated)
 ..........
+Play 17/28 (Generate master session secrets)
+...............
+Play 18/28 (Configure masters)
+...........................................................................................................................^[[A.....................................................................................................................................................................................................................................................................................................................................
+Play 19/28 (Additional master configuration)
+..................................................................................................................................................................................................................................
+Play 20/28 (Gather and set facts for node hosts)
+................
+Play 21/28 (Evaluate node groups)
+.. [WARNING]: Could not match supplied host pattern, ignoring: oo_containerized_master_nodes
+
+
+Play 22/28 (Configure containerized nodes)
+
+Play 23/28 (Configure nodes)
+...................................................................................................................................................................................................................................................................................................................................................................
+Play 24/28 (Additional node config)
+..........................................................................................................................
+Play 25/28 (Create persistent volumes)
+.......................................................................................................................................................................
+Play 26/28 (Create Hosted Resources)
+.................................................................................................................................................................................................................. [WARNING]: Module did not set no_log for stats_password
+
+ [WARNING]: Module did not set no_log for external_host_password
+
+.Pausing for 30 seconds
+(ctrl+C then 'C' = continue early, ctrl+C then 'A' = abort)
+................................................
+Play 27/28 (Update master-config for publicLoggingURL)
+
+Play 28/28 (Re-enable excluder if it was previously enabled)
+................
+localhost                  : ok=11   changed=0    unreachable=0    failed=0   
+master1.host.local         : ok=632  changed=186  unreachable=0    failed=0   
+node1.host.local           : ok=1    changed=0    unreachable=1    failed=0   
+node2.host.local           : ok=212  changed=61   unreachable=0    failed=0   
+
+
+
+An error was detected. After resolving the problem please relaunch the
+installation process.
+
 ```
 
 
