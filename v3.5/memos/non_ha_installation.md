@@ -85,7 +85,8 @@ address=/.openshift.host.local/xxx.xxx.xxx.xxx
 
 ### Installation
 
-* execute 'atomic-openshift-installer install' on master1.host.local host using interactive installation mode at this time
+* execute 'atomic-openshift-installer install' on master1.host.local host using interactive installation mode at this time<br/><br/>
+:star: This command also generate the answer file for unattended installation, the answer file has 'ansible_inventory_path' directive that point the ansible inventory file generated location. The answer file first, not ansible inventory file. 
 
 ```
 # atomic-openshift-installer install
