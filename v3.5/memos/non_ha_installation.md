@@ -13,7 +13,6 @@ OS | RHEL7.4 | All
 OpenShift Ver | 3.5 | All
 
 ### Node list
-:star: Test environment network CIDR is 192.168.123.0/24
 
 Hostname | Roles | Descriptions
 -|-|-
