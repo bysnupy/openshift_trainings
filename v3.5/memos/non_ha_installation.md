@@ -63,16 +63,18 @@ address=/.openshift.host.local/xxx.xxx.xxx.xxx
 
 ### Pre-installation tasks
 
-* Step1: subscription registration
+* subscription registration using RHSM
 
-* Step2: installation of required packages for initial setting up
+* installation of required packages for initial setting up
 
-* Step3: disabled the useless services
+* disabled the useless services, firewalld
 
-* Step4: enabled the required services
+* ensuring access with passwordless between hosts
+
+* enabled the required services, NetworkManager and docker
 
 * Step5: customizes the configurations of target nodes
-  * node server's hostname resolution is required
+  * node server's hostnames and wildcard domain name resolution is required
   * the time is synchonized by NTP on all nodes
 
 * docker install and enabled with dedicated block volume
