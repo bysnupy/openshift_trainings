@@ -1,0 +1,28 @@
+
+[OSEv3:children]
+nodes
+masters
+nfs
+etcd
+
+[OSEv3:vars]
+openshift_master_cluster_public_hostname=None
+openshift_master_default_subdomain=openshift.host.local
+ansible_ssh_user=root
+openshift_master_cluster_hostname=None
+openshift_override_hostname_check=true
+deployment_type=openshift-enterprise
+
+[nodes]
+master1.host.local  openshift_public_ip=192.168.123.144 openshift_ip=192.168.123.144 openshift_public_hostname=master1.host.local openshift_hostname=master1.host.local openshift_schedulable=False ansible_connection=local
+node1.host.local  openshift_public_ip=192.168.123.127 openshift_ip=192.168.123.127 openshift_public_hostname=node1.host.local openshift_hostname=node1.host.local openshift_node_labels="{'region': 'infra'}" openshift_schedulable=True
+node2.host.local  openshift_public_ip=192.168.123.183 openshift_ip=192.168.123.183 openshift_public_hostname=node2.host.local openshift_hostname=node2.host.local openshift_node_labels="{'region': 'infra'}" openshift_schedulable=True
+
+[masters]
+master1.host.local  openshift_public_ip=192.168.123.144 openshift_ip=192.168.123.144 openshift_public_hostname=master1.host.local openshift_hostname=master1.host.local ansible_connection=local
+
+[nfs]
+master1.host.local  openshift_public_ip=192.168.123.144 openshift_ip=192.168.123.144 openshift_public_hostname=master1.host.local openshift_hostname=master1.host.local ansible_connection=local
+
+[etcd]
+master1.host.local  openshift_public_ip=192.168.123.144 openshift_ip=192.168.123.144 openshift_public_hostname=master1.host.local openshift_hostname=master1.host.local ansible_connection=local

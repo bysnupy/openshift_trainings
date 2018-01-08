@@ -46,3 +46,6 @@
       name: atomic-openshift-utils
       state: installed
     when: inventory_hostname in groups['master']
+
+  - name: Unexclude the openshift packages for openshift installation
+    command: /usr/sbin/atomic-openshift-excluder unexclude

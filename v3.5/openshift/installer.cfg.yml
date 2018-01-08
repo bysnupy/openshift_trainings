@@ -1,0 +1,46 @@
+ansible_callback_facts_yaml: /root/.config/openshift/.ansible/callback_facts.yaml
+ansible_inventory_path: /root/.config/openshift/hosts
+ansible_log_path: /tmp/ansible.log
+deployment:
+  ansible_ssh_user: root
+  hosts:
+  - connect_to: master1.host.local
+    hostname: master1.host.local
+    ip: 192.168.123.144
+    public_hostname: master1.host.local
+    public_ip: 192.168.123.144
+    roles:
+    - master
+    - etcd
+    - node
+    - storage
+  - connect_to: node1.host.local
+    hostname: node1.host.local
+    ip: 192.168.123.127
+    node_labels: '{''region'': ''infra''}'
+    public_hostname: node1.host.local
+    public_ip: 192.168.123.127
+    roles:
+    - node
+  - connect_to: node2.host.local
+    hostname: node2.host.local
+    ip: 192.168.123.183
+    node_labels: '{''region'': ''infra''}'
+    public_hostname: node2.host.local
+    public_ip: 192.168.123.183
+    roles:
+    - node
+  master_routingconfig_subdomain: openshift.host.local
+  openshift_master_cluster_hostname: None
+  openshift_master_cluster_public_hostname: None
+  proxy_exclude_hosts: ''
+  proxy_http: ''
+  proxy_https: ''
+  roles:
+    etcd: {}
+    master: {}
+    node: {}
+    storage: {}
+variant: openshift-enterprise
+variant_version: '3.5'
+version: v2
