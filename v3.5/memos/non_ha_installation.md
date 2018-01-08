@@ -65,7 +65,7 @@ address=/.openshift.host.local/xxx.xxx.xxx.xxx
 
 * Step1: subscription registration
 
-* Step2: installatino of required packages for initial setting up
+* Step2: installation of required packages for initial setting up
 
 * Step3: disabled the useless services
 
@@ -74,7 +74,12 @@ address=/.openshift.host.local/xxx.xxx.xxx.xxx
 * Step5: customizes the configurations of target nodes
   * node server's hostname resolution is required
   * the time is synchonized by NTP on all nodes
-  
+
+* docker install and enabled with dedicated block volume
+
+* atomic-openshift-utils installs only on master host
+
+
 
 
 
