@@ -1,0 +1,297 @@
+master1.host.local:
+  common:
+    admin_binary: oadm
+    all_hostnames:
+    - master1.host.local
+    - 192.168.123.144
+    cli_image: openshift3/ose
+    client_binary: oc
+    cluster_id: default
+    config_base: /etc/origin
+    data_dir: /var/lib/origin
+    debug_level: '2'
+    deployer_image: openshift3/ose-deployer
+    deployment_subtype: basic
+    deployment_type: openshift-enterprise
+    dns_domain: cluster.local
+    examples_content_version: v1.5
+    generate_no_proxy_hosts: true
+    hostname: master1.host.local
+    install_examples: true
+    installed_variant_rpms: []
+    internal_hostnames:
+    - master1.host.local
+    - 192.168.123.144
+    ip: 192.168.123.144
+    is_atomic: false
+    is_containerized: false
+    is_etcd_system_container: false
+    is_master_system_container: false
+    is_node_system_container: false
+    is_openvswitch_system_container: false
+    kube_svc_ip: 172.30.0.1
+    pod_image: openshift3/ose-pod
+    portal_net: 172.30.0.0/16
+    public_hostname: master1.host.local
+    public_ip: 192.168.123.144
+    registry_image: openshift3/ose-docker-registry
+    router_image: openshift3/ose-haproxy-router
+    sdn_network_plugin_name: redhat/openshift-ovs-subnet
+    service_type: atomic-openshift
+    use_contiv: false
+    use_dnsmasq: true
+    use_flannel: false
+    use_manageiq: true
+    use_nuage: false
+    use_openshift_sdn: true
+    version_gte_3_1_1_or_1_1_1: true
+    version_gte_3_1_or_1_1: true
+    version_gte_3_2_or_1_2: true
+    version_gte_3_3_or_1_3: true
+    version_gte_3_4_or_1_4: true
+    version_gte_3_5_or_1_5: true
+    version_gte_3_6: false
+  current_config:
+    roles:
+    - node
+    - docker
+  docker:
+    additional_registries:
+    - registry.access.redhat.com
+    api_version: 1.24
+    blocked_registries: []
+    disable_push_dockerhub: false
+    gte_1_10: true
+    hosted_registry_insecure: false
+    hosted_registry_network: 172.30.0.0/16
+    insecure_registries: []
+    options: --log-driver=journald
+    use_system_container: false
+    version: 1.12.6
+  hosted:
+    logging:
+      selector: null
+    metrics:
+      selector: null
+    registry:
+      selector: region=infra
+    router:
+      selector: region=infra
+  node:
+    annotations: {}
+    iptables_sync_period: 30s
+    kubelet_args:
+      node-labels: []
+    labels: {}
+    local_quota_per_fsgroup: ''
+    node_image: openshift3/node
+    node_system_image: openshift3/node
+    nodename: master1.host.local
+    ovs_image: openshift3/openvswitch
+    ovs_system_image: openshift3/openvswitch
+    registry_url: openshift3/ose-${component}:${version}
+    schedulable: true
+    sdn_mtu: '1450'
+    set_node_ip: false
+    storage_plugin_deps:
+    - ceph
+    - glusterfs
+    - iscsi
+node1.host.local:
+  common:
+    admin_binary: oadm
+    all_hostnames:
+    - 192.168.123.127
+    - node1.host.local
+    cli_image: openshift3/ose
+    client_binary: oc
+    cluster_id: default
+    config_base: /etc/origin
+    data_dir: /var/lib/origin
+    debug_level: '2'
+    deployer_image: openshift3/ose-deployer
+    deployment_subtype: basic
+    deployment_type: openshift-enterprise
+    dns_domain: cluster.local
+    examples_content_version: v1.5
+    generate_no_proxy_hosts: true
+    hostname: node1.host.local
+    install_examples: true
+    installed_variant_rpms: []
+    internal_hostnames:
+    - 192.168.123.127
+    - node1.host.local
+    ip: 192.168.123.127
+    is_atomic: false
+    is_containerized: false
+    is_etcd_system_container: false
+    is_master_system_container: false
+    is_node_system_container: false
+    is_openvswitch_system_container: false
+    kube_svc_ip: 172.30.0.1
+    pod_image: openshift3/ose-pod
+    portal_net: 172.30.0.0/16
+    public_hostname: node1.host.local
+    public_ip: 192.168.123.127
+    registry_image: openshift3/ose-docker-registry
+    router_image: openshift3/ose-haproxy-router
+    sdn_network_plugin_name: redhat/openshift-ovs-subnet
+    service_type: atomic-openshift
+    use_contiv: false
+    use_dnsmasq: true
+    use_flannel: false
+    use_manageiq: true
+    use_nuage: false
+    use_openshift_sdn: true
+    version_gte_3_1_1_or_1_1_1: true
+    version_gte_3_1_or_1_1: true
+    version_gte_3_2_or_1_2: true
+    version_gte_3_3_or_1_3: true
+    version_gte_3_4_or_1_4: true
+    version_gte_3_5_or_1_5: true
+    version_gte_3_6: false
+  current_config:
+    roles:
+    - node
+    - docker
+  docker:
+    additional_registries:
+    - registry.access.redhat.com
+    api_version: 1.24
+    blocked_registries: []
+    disable_push_dockerhub: false
+    gte_1_10: true
+    hosted_registry_insecure: false
+    hosted_registry_network: 172.30.0.0/16
+    insecure_registries: []
+    options: --log-driver=journald
+    use_system_container: false
+    version: 1.12.6
+  hosted:
+    logging:
+      selector: null
+    metrics:
+      selector: null
+    registry:
+      selector: region=infra
+    router:
+      selector: region=infra
+  node:
+    annotations: {}
+    iptables_sync_period: 30s
+    kubelet_args:
+      node-labels: []
+    labels: {}
+    local_quota_per_fsgroup: ''
+    node_image: openshift3/node
+    node_system_image: openshift3/node
+    nodename: node1.host.local
+    ovs_image: openshift3/openvswitch
+    ovs_system_image: openshift3/openvswitch
+    registry_url: openshift3/ose-${component}:${version}
+    schedulable: true
+    sdn_mtu: '1450'
+    set_node_ip: false
+    storage_plugin_deps:
+    - ceph
+    - glusterfs
+    - iscsi
+node2.host.local:
+  common:
+    admin_binary: oadm
+    all_hostnames:
+    - 192.168.123.183
+    - node2.host.local
+    cli_image: openshift3/ose
+    client_binary: oc
+    cluster_id: default
+    config_base: /etc/origin
+    data_dir: /var/lib/origin
+    debug_level: '2'
+    deployer_image: openshift3/ose-deployer
+    deployment_subtype: basic
+    deployment_type: openshift-enterprise
+    dns_domain: cluster.local
+    examples_content_version: v1.5
+    generate_no_proxy_hosts: true
+    hostname: node2.host.local
+    install_examples: true
+    installed_variant_rpms: []
+    internal_hostnames:
+    - 192.168.123.183
+    - node2.host.local
+    ip: 192.168.123.183
+    is_atomic: false
+    is_containerized: false
+    is_etcd_system_container: false
+    is_master_system_container: false
+    is_node_system_container: false
+    is_openvswitch_system_container: false
+    kube_svc_ip: 172.30.0.1
+    pod_image: openshift3/ose-pod
+    portal_net: 172.30.0.0/16
+    public_hostname: node2.host.local
+    public_ip: 192.168.123.183
+    registry_image: openshift3/ose-docker-registry
+    router_image: openshift3/ose-haproxy-router
+    sdn_network_plugin_name: redhat/openshift-ovs-subnet
+    service_type: atomic-openshift
+    use_contiv: false
+    use_dnsmasq: true
+    use_flannel: false
+    use_manageiq: true
+    use_nuage: false
+    use_openshift_sdn: true
+    version_gte_3_1_1_or_1_1_1: true
+    version_gte_3_1_or_1_1: true
+    version_gte_3_2_or_1_2: true
+    version_gte_3_3_or_1_3: true
+    version_gte_3_4_or_1_4: true
+    version_gte_3_5_or_1_5: true
+    version_gte_3_6: false
+  current_config:
+    roles:
+    - node
+    - docker
+  docker:
+    additional_registries:
+    - registry.access.redhat.com
+    api_version: 1.24
+    blocked_registries: []
+    disable_push_dockerhub: false
+    gte_1_10: true
+    hosted_registry_insecure: false
+    hosted_registry_network: 172.30.0.0/16
+    insecure_registries: []
+    options: --log-driver=journald
+    use_system_container: false
+    version: 1.12.6
+  hosted:
+    logging:
+      selector: null
+    metrics:
+      selector: null
+    registry:
+      selector: region=infra
+    router:
+      selector: region=infra
+  node:
+    annotations: {}
+    iptables_sync_period: 30s
+    kubelet_args:
+      node-labels: []
+    labels: {}
+    local_quota_per_fsgroup: ''
+    node_image: openshift3/node
+    node_system_image: openshift3/node
+    nodename: node2.host.local
+    ovs_image: openshift3/openvswitch
+    ovs_system_image: openshift3/openvswitch
+    registry_url: openshift3/ose-${component}:${version}
+    schedulable: true
+    sdn_mtu: '1450'
+    set_node_ip: false
+    storage_plugin_deps:
+    - ceph
+    - glusterfs
+    - iscsi
