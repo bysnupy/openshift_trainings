@@ -9,11 +9,12 @@
       - rhel-7-server-extras-rpms
 
   roles:
-  - { role: disable_packages, disabled_packages: ['firewalld'] }
-  - { role: enable_packages, enabled_packages: ['NetworkManager'] }
+  #- { role: disable_packages, disabled_packages: ['firewalld'] }
+  #- { role: enable_packages, enabled_packages: ['NetworkManager'] }
   #- { role: rhsm_registration, rh_user: "{{ RHUSER }}", rh_pass: "{{ RHPASS }}", pool_ids: ["{{POOLID}}"] }
-  - { role: created_hosts, target_group_name: "nodes" }
+  #- { role: created_hosts, target_group_name: "nodes" }
   - { role: set_dns, dns_conn_name: enp0s3, dns4_servers: 192.168.123.103 }
+  - { role: set_ntp, ntp_servers: [ console.host.local ] }
 
   tasks:
   - name: Install the yum-utils for setting up specific yum repositories

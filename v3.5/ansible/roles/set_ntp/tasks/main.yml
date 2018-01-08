@@ -1,0 +1,22 @@
+---
+- name: Installs required packages for setting up NTP
+  yum:
+    name: chrony
+    state: latest
+
+- name: Enable the NTP service
+  systemd:
+    name: chronyd
+    state: started
+    enabled: true
+
+- name: Deploy customized config file
+  template:
+    src: chrony.conf.j2
+    dest: /etc/chrony.conf
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+  notify: restart_chronyd
+
