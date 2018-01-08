@@ -34,7 +34,7 @@ node1.host.local<br/>node2.host.local | OpenShift node servers | nodes runing th
 
 * Step5: customizes the configurations of target nodes
   * node server's hostname resolution is required
-  * node servers are synchonized time by NTP
+  * the time is synchonized by NTP on all nodes
   
 
 
