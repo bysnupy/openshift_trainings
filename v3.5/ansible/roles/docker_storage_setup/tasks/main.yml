@@ -1,0 +1,19 @@
+---
+- name: Deploy the docker-storage-setup config file
+  template:
+    src: docker-storage-setup.j2
+    dest: /etc/sysconfig/docker-storage-setup
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart_docker
+
+- name: Check the docker LVM volume state
+  stat:
+    path: /dev/docker-vg/docker-pool
+  register: docker_lvm_state
+
+- name: Set up docker storage if it doesn't exist
+  command: /usr/bin/docker-storage-setup
+  when: docker_lvm_state.stat.islnk is not defined
+  notify: restart_docker

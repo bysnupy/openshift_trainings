@@ -2,15 +2,17 @@
 - name: OpenShift Pre-Installation tasks
   hosts: nodes
   vars:
-    disable_repos:
+    target_dns_conn: enp0s3
+    dns_server_ip: 192.168.123.103
+    ntp_server_host: console.host.local
+    yum_disable_repos:
       "rhel-7-server-htb-rpms,rhel-7-server-rt-beta-rpms"
-    required_repos:
+    yum_required_repos:
       - rhel-7-server-rpms
       - rhel-7-server-extras-rpms
-      - rhel-7-server-updates-rpms
       - rhel-7-server-ose-3.5-rpms
       - rhel-7-fast-datapath-rpms
-    install_packages:
+    yum_install_packages:
       - docker
       - wget
       - git
@@ -31,10 +33,11 @@
   - { role: enable_packages, enabled_packages: ['NetworkManager'] }
   - { role: rhsm_registration, rh_user: "{{ RHUSER }}", rh_pass: "{{ RHPASS }}", pool_ids: ["{{POOLID}}"] }
   - { role: created_hosts, target_group_name: "nodes" }
-  - { role: set_dns, dns_conn_name: enp0s3, dns4_servers: 192.168.123.103 }
-  - { role: set_ntp, ntp_servers: [ console.host.local ] }
-  - { role: configure_yum_repos, disable_repos: "{{ disable_repos }}", required_repos: "{{ required_repos }}" }
-  - { role: install_packages, install_packages: "{{ install_packages }}" }
+  - { role: set_dns, dns_conn_name: "{{ target_dns_conn }}", dns4_servers: "{{ dns_server_ip }}" }
+  - { role: set_ntp, ntp_servers: [ "{{ ntp_server_host }}" ] }
+  - { role: configure_yum_repos, disable_repos: "{{ yum_disable_repos }}", required_repos: "{{ yum_required_repos }}" }
+  - { role: install_packages, install_packages: "{{ yum_install_packages }}" }
+  - docker_storage_setup
   - { role: enable_packages, enabled_packages: ['docker'] }
 
   tasks:

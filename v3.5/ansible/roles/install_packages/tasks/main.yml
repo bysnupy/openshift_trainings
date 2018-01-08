@@ -2,5 +2,5 @@
 - name: Installs required packages
   yum:
     name: "{{ item }}"
-    state: lastest
+    state: latest
   with_items: "{{ install_packages }}"

@@ -1,0 +1,3 @@
+---
+dev_disk: /dev/sdb
+vg_name: docker-vg
