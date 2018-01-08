@@ -56,7 +56,7 @@ domain=host.local
 address=/.openshift.host.local/xxx.xxx.xxx.xxx
 ```
 
-* If you use DHCP for setting up network interface, you need to disable PEERDNS=no on node hosts except master node
+* If you use DHCP for setting up network interface, you need to disable PEERDNS=no on all node hosts
 ```
 # nmcli con mod eth0 ipv4.ignore-dns-auto true
 ```
