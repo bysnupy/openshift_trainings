@@ -1,0 +1,25 @@
+---
+- name: Ensure to existing .ssh directory
+  file:
+    path: /root/.ssh
+    owner: root
+    group: root
+    mode: 0700
+    state: directory
+
+- name: Prepares distrbuting keys on master nodes
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: "{{ item.mode }}"
+  with_items:
+    - { src: 'private_key', dest: '/root/.ssh/id_rsa',     mode: '0600' }
+    - { src: 'public_key',  dest: '/root/.ssh/id_rsa.pub', mode: '0644' }
+  when: inventory_hostname in groups['master']
+
+- name: Distribute public keys to all nodes
+  authorized_key:
+    user: root
+    key: "{{ lookup('file', 'public_key') }}"

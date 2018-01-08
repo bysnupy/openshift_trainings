@@ -1,0 +1,18 @@
+---
+- name: Install the yum-utils for setting up specific yum repositories
+  yum:
+    name: yum-utils
+    state: latest
+    disablerepo: "{{ disable_repos }}"
+
+- name: Listing the enabled repositories at this time
+  shell: subscription-manager repos --list-enabled | awk '/Repo ID/{print $3}'
+  register: repos_output
+
+- name: Disable all repositories for adding required ones
+  command: yum-config-manager --disable "{{ item }}"
+  with_items: "{{ repos_output.stdout_lines }}"
+
+- name: Adds required repositories for OpenShit installation
+  command: yum-config-manager --enable "{{ item }}"
+  with_items: "{{ required_repos }}"

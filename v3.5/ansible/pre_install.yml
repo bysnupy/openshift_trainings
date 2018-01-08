@@ -1,44 +1,45 @@
 ---
 - name: OpenShift Pre-Installation tasks
-  hosts: "{{ host }}"
+  hosts: nodes
   vars:
     disable_repos:
       "rhel-7-server-htb-rpms,rhel-7-server-rt-beta-rpms"
     required_repos:
       - rhel-7-server-rpms
       - rhel-7-server-extras-rpms
+      - rhel-7-server-updates-rpms
+      - rhel-7-server-ose-3.5-rpms
+      - rhel-7-fast-datapath-rpms
+    install_packages:
+      - docker
+      - wget
+      - git
+      - net-tools
+      - bind-utils
+      - iptables-services
+      - bridge-utils
+      - bash-completion
+      - kexec-tools
+      - sos
+      - psacct 
+      - atomic-openshift-excluder
+      - atomic-openshift-docker-excluder
 
   roles:
-  #- { role: disable_packages, disabled_packages: ['firewalld'] }
-  #- { role: enable_packages, enabled_packages: ['NetworkManager'] }
-  #- { role: rhsm_registration, rh_user: "{{ RHUSER }}", rh_pass: "{{ RHPASS }}", pool_ids: ["{{POOLID}}"] }
-  #- { role: created_hosts, target_group_name: "nodes" }
+  - distribute_ssh_keys
+  - { role: disable_packages, disabled_packages: ['firewalld'] }
+  - { role: enable_packages, enabled_packages: ['NetworkManager'] }
+  - { role: rhsm_registration, rh_user: "{{ RHUSER }}", rh_pass: "{{ RHPASS }}", pool_ids: ["{{POOLID}}"] }
+  - { role: created_hosts, target_group_name: "nodes" }
   - { role: set_dns, dns_conn_name: enp0s3, dns4_servers: 192.168.123.103 }
   - { role: set_ntp, ntp_servers: [ console.host.local ] }
+  - { role: configure_yum_repos, disable_repos: "{{ disable_repos }}", required_repos: "{{ required_repos }}" }
+  - { role: install_packages, install_packages: "{{ install_packages }}" }
+  - { role: enable_packages, enabled_packages: ['docker'] }
 
   tasks:
-  - name: Install the yum-utils for setting up specific yum repositories
+  - name: Install atomic-openshift-utils on master
     yum:
-      name: yum-utils
+      name: atomic-openshift-utils
       state: installed
-      disablerepo: "{{ disable_repos }}"
-
-  - name: Listing the enabled repositories at this time
-    shell: subscription-manager repos --list-enabled | awk '/Repo ID/{print $3}'
-    register: repos_output
-
-  - name: Disable all repositories for adding required ones
-    command: yum-config-manager --disable "{{ item }}"
-    with_items: "{{ repos_output.stdout_lines }}"
-
-  - name: Adds required repositories for OpenShit installation
-    command: yum-config-manager --enable "{{ item }}"
-    with_items: "{{ required_repos }}"
-
-  - name: Install required packages
-    yum:
-      name: "{{ item }}"
-      state: installed
-    with_items:
-      - docker
-
+    when: inventory_hostname in groups['master']

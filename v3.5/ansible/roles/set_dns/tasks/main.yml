@@ -10,3 +10,4 @@
     type: "{{ dns_type }}"
     dns4: "{{ dns4_servers }}"
     state: present
+  notify: restart_network
