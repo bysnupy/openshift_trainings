@@ -1,25 +1,21 @@
 ---
 - name: OpenShift Pre-Installation tasks
-  hosts: nodes
+  hosts: "{{ host }}"
   vars:
-    rh_user: "{{ RHUSER }}"
-    rh_pass: "{{ RHPASS }}"
-    pool_id: "{{ POOLID }}"
     disable_repos:
       "rhel-7-server-htb-rpms,rhel-7-server-rt-beta-rpms"
     required_repos:
       - rhel-7-server-rpms
       - rhel-7-server-extras-rpms
 
+  roles:
+  - { role: disable_packages, disabled_packages: ['firewalld'] }
+  - { role: enable_packages, enabled_packages: ['NetworkManager'] }
+  #- { role: rhsm_registration, rh_user: "{{ RHUSER }}", rh_pass: "{{ RHPASS }}", pool_ids: ["{{POOLID}}"] }
+  - { role: created_hosts, target_group_name: "nodes" }
+  - { role: set_dns, dns_conn_name: enp0s3, dns4_servers: 192.168.123.103 }
+
   tasks:
-  - name: Register subscription and pool-ID
-    redhat_subscription:
-      state: present
-      username: "{{ rh_user }}"
-      password: "{{ rh_pass }}"
-      pool_ids:
-        - "{{ pool_id }}"
-    
   - name: Install the yum-utils for setting up specific yum repositories
     yum:
       name: yum-utils
@@ -45,14 +41,3 @@
     with_items:
       - docker
 
-  - name: Disable the firewalld service
-    systemd:
-      name: firewalld
-      state: stopped
-      enabled: true
-
-  - name: Enable the NetworkManager service
-    systemd:
-      name: NetworkManager
-      state: started
-      enabled: true

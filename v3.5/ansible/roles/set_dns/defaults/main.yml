@@ -1,0 +1,3 @@
+---
+dns_conn_name: eth0
+dns_type: ethernet

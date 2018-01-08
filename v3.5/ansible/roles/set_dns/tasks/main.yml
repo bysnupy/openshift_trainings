@@ -1,0 +1,12 @@
+---
+- name: Install required packages before setting DNS
+  yum:
+    name: NetworkManager-glib
+    state: installed
+
+- name: Sets the DNSs servers
+  nmcli:
+    conn_name: "{{ dns_conn_name }}"
+    type: "{{ dns_type }}"
+    dns4: "{{ dns4_servers }}"
+    state: present

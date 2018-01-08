@@ -1,0 +1,4 @@
+---
+dns_conn_name: enp0s3
+dns4_servers:
+  - console.host.local

@@ -1,0 +1,5 @@
+---
+rh_user: redhat_username
+rh_pass: redhat_password
+pool_ids:
+  - subscription_pool_ID

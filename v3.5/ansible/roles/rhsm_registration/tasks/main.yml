@@ -1,0 +1,7 @@
+---
+- name: Register the subscription and pool-ID using RHSM
+  redhat_subscription:
+    state: present
+    username: "{{ rh_user }}"
+    password: "{{ rh_pass }}"
+    pool_ids: "{{ pool_ids }}"

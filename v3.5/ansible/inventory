@@ -9,3 +9,6 @@ master1.host.local
 [node]
 node1.host.local
 node2.host.local
+
+[extra_groups]
+console.host.local ipv4_address=192.168.123.103
