@@ -24,3 +24,24 @@ node1.host.local<br/>node2.host.local | OpenShift node servers | nodes runing th
 
 ### Pre-installation tasks
 
+* Step1: subscription registration
+
+* Step2: installatino of required packages for initial setting up
+
+* Step3: disabled the useless services
+
+* Step4: enabled the required services
+
+* Step5: customizes the configurations of target nodes
+  * node server's hostname resolution is required
+  * node servers are synchonized time by NTP
+  
+
+
+
+
+
+
+
+
+
