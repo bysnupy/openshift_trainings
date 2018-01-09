@@ -390,6 +390,16 @@ installation process.
 
 ```
 
+### Post-Installation tasks
+
+* verifies openshift services is running properly on each nodes
+
+* verifies nodes and base system pods status
+
+* exclude openshift packages on yum repositories again
+
+* tests through processing all phases on openshift pipline
+
 
 
 
